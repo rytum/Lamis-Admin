@@ -91,7 +91,7 @@ const LandingPage = () => {
                   Super Admin Access
                 </a>
                 <a
-                  href="/manager"
+                  href="/manager-login"
                   className="px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md border hover:shadow-lg"
                   style={{ 
                     borderColor: colors.border.primary,
@@ -139,6 +139,8 @@ const App = () => {
               <ManagerDashboard />
             </ProtectedManagerRoute>
           } />
+          {/* Catch all route - redirect to home */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
     </ThemeProvider>
