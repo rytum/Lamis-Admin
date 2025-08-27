@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DashboardLayout from './DashboardLayout';
 import { useThemeColors } from '../Theme/useThemeColors';
+import { API_ENDPOINTS } from '../../../config/api';
 
 const UsersManagement = () => {
   const [users, setUsers] = useState([]);
@@ -13,7 +14,7 @@ const UsersManagement = () => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/employees', {
+        const response = await axios.get(API_ENDPOINTS.EMPLOYEES, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUsers(response.data);

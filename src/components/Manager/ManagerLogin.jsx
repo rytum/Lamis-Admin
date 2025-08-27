@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useThemeColors } from '../Theme/useThemeColors';
+import { API_ENDPOINTS } from '../../config/api';
 
 const ManagerLogin = () => {
   const [email, setEmail] = useState('');
@@ -16,7 +17,7 @@ const ManagerLogin = () => {
     setError('');
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/employees/login', {
+      const res = await axios.post(API_ENDPOINTS.EMPLOYEE_LOGIN, {
         email,
         password,
       });

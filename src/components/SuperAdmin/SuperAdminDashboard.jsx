@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useThemeColors } from '../Theme/useThemeColors';
+import { API_ENDPOINTS } from '../../config/api';
 
 // --- Helper Functions ---
 
@@ -208,7 +209,7 @@ const AddManagerModal = ({ isOpen, onClose, onManagerAdded }) => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/employees/register', {
+      await axios.post(API_ENDPOINTS.EMPLOYEE_REGISTER, {
         ...newManager,
         role: 'manager',
         access: { canChangeSubscription: false }, // Default access
@@ -373,8 +374,8 @@ const DashboardContent = () => {
     const headers = { Authorization: `Bearer ${token}` };
     try {
         const [usersRes, managersRes] = await Promise.all([
-            axios.get('http://localhost:5000/api/auth0/all', { headers }),
-            axios.get('http://localhost:5000/api/employees/all', { headers })
+                    axios.get(API_ENDPOINTS.AUTH0_ALL, { headers }),
+        axios.get(API_ENDPOINTS.EMPLOYEE_ALL, { headers })
         ]);
         setUsers(usersRes.data);
         setManagers(managersRes.data);
@@ -457,7 +458,7 @@ const DashboardContent = () => {
       const newStatus = currentStatus === 'yes' ? 'no' : 'yes';
       try {
         const token = localStorage.getItem('token');
-        await axios.put(`http://localhost:5000/api/auth0/${userId}/subscription`, 
+        await axios.put(API_ENDPOINTS.AUTH0_SUBSCRIPTION(userId), 
           { subscription_status: newStatus }, 
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -470,7 +471,7 @@ const DashboardContent = () => {
     const handleBulkSubscriptionChange = async (newStatus) => {
         const token = localStorage.getItem('token');
         const updatePromises = Array.from(selectedUserIds).map(userId => 
-            axios.put(`http://localhost:5000/api/auth0/${userId}/subscription`, 
+            axios.put(API_ENDPOINTS.AUTH0_SUBSCRIPTION(userId), 
                 { subscription_status: newStatus }, // Logic is still 'yes'/'no'
                 { headers: { Authorization: `Bearer ${token}` } }
             )
@@ -494,7 +495,7 @@ const DashboardContent = () => {
   const handleToggleManagerAccess = async (managerId, currentAccess) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/employees/${managerId}/access`, 
+              await axios.put(API_ENDPOINTS.EMPLOYEE_ACCESS(managerId), 
         { access: { canChangeSubscription: !currentAccess } }, 
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useTheme } from '../Theme/ThemeProvider';
 import { useThemeColors } from '../Theme/useThemeColors';
 import ThemeToggle from '../Theme/ThemeToggle';
+import { API_ENDPOINTS } from '../../config/api';
 
 // --- Reusable Components ---
 
@@ -306,7 +307,7 @@ const ManagerDashboard = () => {
         setManager(managerData);
 
         // Fetch users
-        const usersResponse = await axios.get('http://localhost:5000/api/auth0/all', {
+        const usersResponse = await axios.get(API_ENDPOINTS.AUTH0_ALL, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUsers(usersResponse.data);
@@ -379,7 +380,7 @@ const ManagerDashboard = () => {
     }
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/auth0/${userId}/subscription`,
+              await axios.put(API_ENDPOINTS.AUTH0_SUBSCRIPTION(userId),
         { subscription_status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
