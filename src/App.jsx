@@ -5,13 +5,24 @@ import Dashboard from './components/SuperAdmin/LandingPage/Dashboard';
 import ManagerLogin from './components/Manager/ManagerLogin';
 import ManagerDashboard from './components/Manager/Dashboard';
 import SuperAdminLogin from './components/SuperAdmin/SuperAdminLogin';
-import { ThemeProvider } from './components/Theme/ThemeProvider';
+import { ThemeProvider, useTheme } from './components/Theme/ThemeProvider';
 import { useThemeColors } from './components/Theme/useThemeColors';
 
 // Landing Page Component
 const LandingPage = () => {
   const colors = useThemeColors();
+  const { theme } = useTheme();
   
+  // Determine which logo to use based on current theme
+  const getLogoSource = () => {
+    if (theme === 'system') {
+      // For system theme, check if user prefers dark mode
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return prefersDark ? '/Lamis-Logo-dark 5.png' : '/lamis-navabr-logo-light.png';
+    }
+    return theme === 'dark' ? '/Lamis-Logo-dark 5.png' : '/lamis-navabr-logo-light.png';
+  };
+
   return (
     <>
       <style>
@@ -58,10 +69,10 @@ const LandingPage = () => {
               }}
             >
               <div className="flex justify-center mb-6">
-                {/* Use LegalCare logo image */}
+                {/* Use theme-appropriate Lamis AI logo */}
                 <img
-                  src="/LEGALCARE.png"
-                  alt="LegalCare Logo"
+                  src={getLogoSource()}
+                  alt="Lamis AI Logo"
                   className="h-16 w-auto mx-auto mb-2"
                   style={{ filter: 'drop-shadow(0 2px 8px rgba(107, 114, 128, 0.3))' }}
                 />
@@ -70,13 +81,13 @@ const LandingPage = () => {
                 className="text-5xl font-extrabold mb-4 tracking-tight font-sans transition-colors duration-300"
                 style={{ color: colors.text.primary }}
               >
-                LegalCare
+                Lamis AI
               </h1>
               <p 
                 className="text-lg mb-8 font-medium transition-colors duration-300"
                 style={{ color: colors.text.secondary }}
               >
-                Streamline your legal operations with a secure, modern, and scalable management platform.
+                Streamline your legal operations with a secure, modern, and scalable AI-powered management platform.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
                 <a
@@ -107,7 +118,7 @@ const LandingPage = () => {
               className="mt-12 text-center text-sm transition-colors duration-300"
               style={{ color: colors.text.muted }}
             >
-              &copy; {new Date().getFullYear()} LegalCare. All rights reserved.
+              &copy; {new Date().getFullYear()} Lamis AI. All rights reserved.
             </div>
           </div>
         </div>

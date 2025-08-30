@@ -28,18 +28,16 @@ const DashboardHeader = ({ managerName, onLogout }) => {
           <div className="flex items-center space-x-4">
             <div className="flex items-center">
               <div 
-                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold"
                 style={{ backgroundColor: colors.accent.primary }}
               >
-                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-                </svg>
+                LA
               </div>
               <span 
                 className="ml-3 text-xl font-bold transition-colors duration-300"
                 style={{ color: colors.text.primary }}
               >
-                LegalCare
+                Lamis AI
               </span>
               <span 
                 className="ml-2 text-xs font-semibold px-2 py-1 rounded-full border transition-colors duration-300"

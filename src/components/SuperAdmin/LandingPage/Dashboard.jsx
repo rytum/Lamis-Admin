@@ -43,13 +43,13 @@ const DashboardHeader = ({ onLogout }) => {
                 className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold transition-colors duration-300"
                 style={{ backgroundColor: colors.accent.primary }}
               >
-                LC
+                LA
               </div>
               <span 
                 className="ml-3 text-xl font-bold transition-colors duration-300"
                 style={{ color: colors.text.primary }}
               >
-                LegalCare
+                Lamis AI
               </span>
               <span 
                 className="ml-2 text-xs font-semibold px-2 py-1 rounded-full border transition-colors duration-300"

@@ -27,7 +27,7 @@ const Navbar = () => {
         </button>
       );
     }
-    if (user?.email === 'ops@legalcare.app') {
+    if (user?.email === 'ops@lamis.ai') {
       return (
         <>
           <Link
@@ -87,18 +87,16 @@ const Navbar = () => {
             <div className="flex-shrink-0 flex items-center">
               <Link to="/" className="flex items-center">
                 <div 
-                  className="w-8 h-8 rounded-lg flex items-center justify-center"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold"
                   style={{ backgroundColor: colors.accent.primary }}
                 >
-                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-                  </svg>
+                  LA
                 </div>
                 <span 
                   className="ml-[1px] text-xl font-bold"
                   style={{ color: colors.text.primary }}
                 >
-                  LegalCare
+                  Lamis AI
                 </span>
               </Link>
             </div>
